@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/all.css' %}" rel="stylesheet"/>
+    <title>WOOGO</title>
+    <link href="{% static 'images/icon.png'%}" rel="icon">
+    <style>
+        :root
+        {
+        --bgcolor:linear-gradient(60deg,#fa8400,#ffa92f);
+        --txtcolor:#ffa92f;
+        }
+        .t1
+        {
+        font-size:14px;
+        }
+        .bg-mycolor
+        {
+        background:var(--bgcolor) !important;
+        }
+        .txt-mycolor
+        {
+        color:var(--txtcolor);
+        }
+        .fa-brands
+        {
+        border:1px solid white;
+        padding:.3%;
+        transition:all 1s;
+        }
+       .fa-brands:hover
+        {
+        -webkit-transform: scaleX(-1);
+       transform: scaleX(-1);
+       background:white;
+       color:#63635d;
+        }
+        #top
+        {
+        background:#676562;
+        }
+        #menu
+        {
+        background:transparent !important;
+        }
+        #menu ul li a
+        {
+        color:#fc8400;
+        }
+        .ufooter
+        {
+        min-height:300px;
+        }
+        .bfooter
+        {
+        min-height:50px;
+        }
+    </style>
+</head>
+<body>
+<script src="{% static 'js/bootstrap.bundle.js'%}"></script>
+<div class="container-fluid">
+    <div class="row t1 text-center bg-mycolor text-light py-1">
+        <div class="col-lg-2 col-md-6 col-sm-12">
+            <i class="fa-solid fa-phone fa-beat-fade" style="color: #938f85;"></i> +91 8188869249
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <i class="fa-regular fa-envelope fa-beat-fade" style="color: #a5a4a1;"></i>
+            ironabhi728@.gmail
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            An ISO Certified Grocery Delivery Company
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12">
+            <i class="fa-brands fa-square-facebook"></i>
+            <i class="fa-brands fa-square-twitter"></i>
+            <i class="fa-brands fa-square-instagram"></i>
+            <i class="fa-brands fa-square-youtube"></i>
+            <i class="fa-brands fa-square-whatsapp"></i>
+            <i class="fa-brands fa-linkedin"></i>
+        </div>
+    </div>
+    <div class="row t2">
+        <div class="col-sm-3">
+            <img src="{% static 'images/weblogo.png'%}" style="max-height:80px; margin-top:1.5%;" class="img-fluid rounded-start"/>
+
+        </div>
+        <div class="col-sm-6 fs-4">
+            <marquee direction="right" behavior="#" height="80px">
+                <img src="{% static 'images/bus.gif'%}" style="max-height:80px;" class="img-fluid rounded-start"
+                     alt="...">
+                DELIVERY IN 30 MIN...
+                <img src="{% static 'images/bus.gif'%}" style="max-height:80px;" class="img-fluid rounded-start"
+                     alt="...">
+            </marquee>
+        </div>
+           <div class="col-sm-2 text-end mx-auto">
+        {% if request.session.user %}
+<a href="/user/cartitems/" class="btn btn-sm bg-mycolor text-light mt-2">Cart
+<i class="fa-solid fa-cart-shopping"></i>
+    <b class="badge text-bg-light">{{request.session.cartitems}}</b>
+</a>
+        <a href="/user/orderslist/" class="btn btn-sm bg-mycolor text-light mt-2 ">My Orders
+<i class="fa-solid fa-truck-fast"></i>
+</a>
+        {% else %}
+<a href="/user/cartitems/" class="btn bg-mycolor text-light mt-3">Cart
+<i class="fa-solid fa-cart-shopping"></i>
+    <b class="badge text-bg-light">0</b>
+</a>
+        {% endif %}
+    </div>
+            <div class="col-sm-1 text-center pt-1 mt-3">
+      {% if request.session.user %}
+                <a href="/user/myprofile/" class="nav-link txt-mycolor" style="font-size:12px;">
+        <img src="/{{request.session.userpic}}" style="max-height:35px; max-width:30px; border-radius: 50%;"><br/>
+        {{request.session.username}}
+     </a>
+      {% else %}
+        <img src="{% static 'images/user.gif'%}" style="max-height:65px; max-width:60px;" >
+                <a href="" class="nav-link disabled" style="font-size:12px;">Default User</a>
+
+      {% endif %}
+    </div>
+    </div>
+    <div class="row t3" id="top">
+        <div class="col-sm-10 mx-auto" id="menu">
+            <!-- start menu -->
+            <ul class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                <li class="nav-item">
+                    <a href="/user/home/"
+                       class=" btn d-inline-flex focus-ring focus-ring-warning py-1 px-2 mt-1 text-decoration-none">
+                        <b>HOME</b>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/user/product/"
+                       class=" btn d-inline-flex focus-ring focus-ring-warning py-1 px-2 mt-1 text-decoration-none">
+                        <b>PRODUCTS</b>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/user/event/"
+                       class=" btn d-inline-flex focus-ring focus-ring-warning py-1 px-2 mt-1 text-decoration-none">
+                        <b>EVENT</b>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/user/contactus/"
+                       class=" btn d-inline-flex focus-ring focus-ring-warning py-1 px-2 mt-1 text-decoration-none">
+                        <b>CONTACT US</b>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/user/aboutus/"
+                       class=" btn d-inline-flex focus-ring focus-ring-warning py-1 px-2 mt-1 text-decoration-none">
+                        <b>ABOUT US</b>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/user/signup/"
+                       class=" btn d-inline-flex focus-ring focus-ring-warning py-1 px-2 mt-1 text-decoration-none">
+                        <b>SIGN UP</b>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/user/myprofile/"
+                       class=" btn d-inline-flex focus-ring focus-ring-warning py-1 px-2 mt-1 text-decoration-none">
+                        <b>MY PROFILE</b>
+                    </a>
+                </li>
+                {% if request.session.user %}
+               <li class="nav-item">
+                    <a href="/user/signout/"
+                       class=" btn d-inline-flex focus-ring focus-ring-warning py-1 px-2 mt-1 text-decoration-none">
+                        <b>SIGN OUT</b>
+                    </a>
+                </li>
+                {% else %}
+               <li class="nav-item">
+                    <a href="/user/signin/"
+                       class=" btn d-inline-flex focus-ring focus-ring-warning py-1 px-2 mt-1 text-decoration-none">
+                        <b>SIGN IN</b>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+            <!-- end menu -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12" style="min-height:500px;">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+    <div class="row ufooter" style="height:100px; background: #162339; border-bottom: 1px solid grey;">
+        <div class="col-sm-2 text-center text-light pt-4" style="font-size:18px;">
+            <i class="fa-sharp fa-regular fa-address-card fa-fade" style="color: rgb(152, 132, 0); font-size: 16px;"></i>
+            <u style="color: grey;">About Us</u><br><br>
+            <b><a href="/user/contact/" style="text-decoration: none; color: white;">Contact US</a></b><br>
+            <b>Carriers</b><br>
+            <b>Woogo Stories</b><br>
+            <b>press</b><br>
+            <b>wholesale</b><br>
+            <b>Cleartrip</b><br>
+            <b>Corporate Information</b><br>
+        </div>
+        <div class="col-sm-2 text-center text-light pt-4" style="font-size: 18px;">
+            <i class="fa-solid fa-handshake-angle fa-fade" style="color: rgb(152, 132, 0); font-size: 16px;"></i> <u
+                style="color: grey;">Help</u><br><br>
+            <b>Payments</b><br>
+            <b>Shiping</b><br>
+            <b>Cancellation and returns</b><br>
+            <b>FAQ</b><br>
+            <b>Report</b><br>
+        </div>
+        <div class="col-sm-2 text-center text-light pt-4" style="font-size: 18px;">
+            <i class="fa-solid fa-shield-halved fa-fade" style="color: rgb(152, 132, 0); font-size: 16px;"></i> <u
+                style="color: grey;">Consumer Policy</u><br><br>
+            <b>Cancellation and returns</b><br>
+            <b>Terms of use</b><br>
+            <b>Security</b><br>
+            <b>Privacy</b><br>
+        </div>
+        <div class="col-sm-2 text-center text-light pt-4" style="font-size: 18px; border-right: 2px solid grey;">
+            <i class="fa-solid fa-thumbs-up fa-fade" style="color: rgb(152, 132, 0); font-size: 16px;"></i> <u
+                style="color: grey;">Social</u><br><br>
+            <b>Facebook</b><br>
+            <b>Instagram</b><br>
+            <b>Twitter</b><br>
+        </div>
+        <div class="col-sm-2  text-light pt-4" style="font-size: 15px; text-align: justify;">
+            <i class="fa-regular fa-envelope fa-fade" style="color: rgb(152, 132, 0); font-size: 16px;"></i> <u
+                style="color: grey;">Mail US</u><br><br>
+            <u> woogo private limited </u>  <br>
+            ironabhi728@gmail.com<br>
+            +91 8188869249<br>
+            +91 8112710676<br>
+            <a href="/user/home" style="text-decoration:none;" class="text-warning fs-4"><u>woogo.in</u></a>
+        </div>
+        <div class="col-sm-2  text-light pt-4" style="font-size: 12px; text-align: justify;">
+            <i class="fa-solid fa-house fa-fade" style="color: rgb(152, 132, 0); font-size: 14px;"></i> <u
+                style="color: grey;">Registered Address</u><br><br>
+            Plot No. 43 Behind HP Petrol Pump,<br>
+            Tedhipulia Ring Road Sector 5,<br>
+            Vikas Nagar , Lucknow<br>
+            +91 8188869249<br>
+            +91 8112710676<br>
+        </div>
+    </div>
+    <div class="row bfooter  text-light pt-3 text-center" style="background: #162339; font-size: 13px;">
+        <div class="col-sm-2"><i class="fa-solid fa-suitcase me-2" style="font-size: 15px;color: rgb(152, 132, 0);"></i>Become
+            a seller
+        </div>
+        <div class="col-sm-1"><i class="fa-solid fa-rectangle-ad me-2" style="font-size: 15px;color: rgb(152, 132, 0);"></i> Advertise
+        </div>
+        <div class="col-sm-1"><i class="fa-solid fa-gift me-2" style="font-size: 15px;color: rgb(152, 132, 0);"></i> Gift
+            Crds
+        </div>
+        <div class="col-sm-1"><i class="fa-solid fa-question me-2" style="font-size: 15px;color: rgb(152, 132, 0);"></i>
+            Help Center
+        </div>
+        <div class="col-sm-1"><i class="fa-solid fa-copyright me-2" style="font-size: 15px;color: rgb(152, 132, 0);"></i>
+           <a href="/user/home"> 2023 woogo.in </a>
+        </div>
+        <div class="col-sm-3">Developed By:-<a href="/user/profile">ABHINAV MISHRA</a></div>
+        <div class="col-sm-3 pb-2"><i class="fa-brands fa-square-facebook"></i>
+            <i class="fa-brands fa-square-twitter"></i>
+            <i class="fa-brands fa-square-instagram"></i>
+            <i class="fa-brands fa-square-youtube"></i>
+            <i class="fa-brands fa-square-whatsapp"></i>
+            <i class="fa-brands fa-linkedin"></i></div>
+    </div>
+</div>
+</body>
+</html>

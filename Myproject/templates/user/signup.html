@@ -1,0 +1,42 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+<style>
+    .form-control
+    {
+    height:50px;
+    margin-bottom:.8%;
+    }
+</style>
+<div class="text-center fs-2">
+    Sign <b class="txt-mycolor">Up <i class="fa-regular fa-address-card"></i></b>
+</div>
+<div class="row">
+    <div class="col-sm-12 mt-4 mb-4">
+        <div class="row">
+        <div class="col-sm-6 ms-5 me-3 pt-5 pb-3 ps-5 pe-5" style="background:#ffc760; border-radius:20px;">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                 <h1 style="text-align:center;">WOOGO</h1>
+Name<input type="text" required name="name" placeholder="Name.." class="form-control"/>
+Email<input type="email" required name="email" placeholder="Email.." class="form-control"/>
+Mobile<input type="number" name="mobile" placeholder="Mobile.." class="form-control"/>
+Password<input type="password" name="passwd" placeholder="password.." class="form-control"/>
+Profile Picture<input type="file" name="fu" class="form-control"/>
+Address<textarea class="form-control" name="address" placeholder="Address..."></textarea>
+<input type="submit" value="Save" class="btn bg-mycolor mt-2" style="width:465px;"/>
+            </form>
+        </div>
+        <div class="col-sm-5 ms-4 ">
+            <img src="{% static 'images/signup.gif'%}" style="max-height: 500px; width:400px;"/>
+            <div class="row">
+            <h3 style="text-align:center;">All-In-One</h3><br/>
+            <h3 style="text-align:center; background:#ffc760; border-radius:20px 0px 20px 0px;">Online Marketing Plateform</h3><br/>
+                <h3 style="text-align:center;">to buy your needs...</h3>
+                <img src="{% static 'images/a2.gif'%}" style="max-height: 150px; width:400px; margin-left:30px;"/>
+        </div>
+        </div>
+            </div>
+    </div>
+</div>
+{% endblock %}

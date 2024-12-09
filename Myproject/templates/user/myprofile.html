@@ -1,0 +1,83 @@
+{% extends 'base.html'%}
+{% load static %}
+
+{% block content%}
+<style>
+    .fa-regular{
+        border:1px solid var(--txtcolor) !important;
+        text-align: center;
+        height:35px;
+        width: 35px;
+        border:1px groove var(--txtcolor) !important;
+        line-height: 35px;
+    }
+    .outer{
+        min-height:450px;
+        background: linear-gradient(#fb8b09,#fc9313);
+        padding-bottom: 20px;
+    }
+    .form-control{
+        height:35px;
+        margin-bottom: .8%;
+    }
+    #upform{
+        display: none;
+    }
+</style>
+<script>
+    function demo(){
+        document.getElementById('upform').style.display="block";
+    }
+
+</script>
+<div class="text-center fs-5 mt-3 mb-2">
+    My <b class="txt-mycolor">Profile <i class="fa-solid fa-user"></i></b>
+</div>
+{% if not request.session.user %}
+<script>alert('Dear User ! You have to login first...');
+location.href="/user/signin/"
+</script>
+{% endif %}
+<div class="row">
+    <div class="col-sm-8 mx-auto"style="max-width: 700px; max-height: 900px !important;">
+        <!--start profile-->
+        {% for i in rdata %}
+        <div class="card mb-2" >
+            <div class="row g-0">
+              <div class="col-md-4 pt-5">
+                <img src="/{{i.profile}}" class="img-fluid " alt="..." style="max-height: 200px; min-height: 200px; padding-left: 60px; margin-bottom:50px;">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body p-5">
+                  <p class="card-text">
+                  <i class="fa-sharp fa-solid fa-circle-user" style="color: #fe8701;"></i> {{i.name}}<br>
+                  <i class="fa-sharp fa-solid fa-envelope" style="color: #fe8701;"></i> {{i.email}}<br>
+                  <i class="fa-sharp fa-solid fa-phone" style="color: #fe8701;"></i>  {{i.mobile}}<br>
+                  <i class="fa-sharp fa-solid fa-lock" style="color: #fe8701;"></i>  {{i.passwd}}<br>
+                  <i class="fa-sharp fa-solid fa-location-dot" style="color: #fe8701;"></i>  {{i.address}}</p>
+                  <a href="#" onclick="demo()"  class="btn btn-sm bg-mycolor text-white">Edit Profile <i class="fa-regular fa-pen-to-square"></i> </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        <!--end profile-->
+</div>
+<div class="row py-3 mt-3" id="upform">
+    <div class="outer">
+        <div class="col-sm-12 text-center text-white py-3 fs-5">UPDATE YOUR DETAILS</div>
+    <div class="col-sm-6">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            Name <input type="text" required name="name" placeholder="Name.." class="form-control"/>
+            Mobile <input type="number" required name="mobile" placeholder="Mobile.." class="form-control"/>
+            Password <input type="password" required name="passwd" placeholder="Password.." class="form-control"/>
+            Profile Picture <input type="file" required name="fu" placeholder="Profile.." class="form-control"/>
+            Address<textarea class="form-control" name="address" placeholder="Address"></textarea>
+            <input type="submit" value="save" class="btn bg-info text-light form-control mt-2 fs-5 p-0">
+        </form>
+    </div>
+</div>
+</div>
+
+{% endblock %}
